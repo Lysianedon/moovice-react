@@ -40,6 +40,7 @@ export default class Card extends Component {
                     <li>{this.state.title}</li>
                     <li>{this.state.yearRelease}</li>
                     <li>{this.state.description}</li>
+                    
                 </ul>
             </div>
         )
