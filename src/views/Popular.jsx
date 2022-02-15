@@ -41,6 +41,7 @@ export default class Popular extends Component {
                             poster={`https://image.tmdb.org/t/p/w300/${movie.poster_path}`}
                             yearRelease={movie.release_date} 
                             description={movie.overview}/>
+                            
                         }
 
                         return null;
