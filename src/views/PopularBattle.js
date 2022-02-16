@@ -27,7 +27,7 @@ export default class PopularBattle extends Component {
                 // console.log("test click card");
                 // console.log(e.target);
 
-                if (this.state.movie1 || this.state.movie2 !== undefined ) {
+                if (this.state.movie1 !== this.state.movies[19] && this.state.movie2 !== this.state.movies[19] ) {
                     
                     this.setState({
                         movie1 : this.state.movies[this.state.movies.indexOf(this.state.movie1) + 2],
@@ -39,6 +39,8 @@ export default class PopularBattle extends Component {
 
             } )
         })
+
+        return null;
 
 
     }
