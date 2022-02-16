@@ -4,3 +4,8 @@ box-shadow: 1px 1px 20px -4px rgba(0,0,0,0.88);
 list-style-type: square;
 
 }
+
+.nav-links:hover {
+  background-color: white;
+  color: black !important;
+}

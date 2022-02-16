@@ -17,15 +17,15 @@ export default class App extends Component {
     return (
 
       <BrowserRouter>
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/weekly">Weekly</Link>
-            <Link to="/weekly-battle">Weekly Battle</Link>
-            <Link to="/popular">Popular</Link>
-            <Link to="/popular-battle">Popular Battle</Link>
-            <Link to="/favorites">Favorites</Link>
+          <nav style={{margin : " 0 auto 2%", padding : "1% 0 1% 5%", width : "70%", backgroundColor : "black", }}>
+            <Link to="/" style={{marginRight : "2%", color : "white", textDecoration : "none", fontSize: "1.9em"}} class="nav-links">Home</Link>
+            <Link to="/weekly" style={{marginRight : "2%", color : "white", textDecoration : "none", fontSize: "1.9em"}} class="nav-links">Weekly</Link>
+            <Link to="/weekly-battle" style={{marginRight : "2%", color : "white", textDecoration : "none", fontSize: "1.9em"}} class="nav-links">Weekly Battle</Link>
+            <Link to="/popular"style={{marginRight : "2%", color : "white", textDecoration : "none", fontSize: "1.9em"}} class="nav-links">Popular </Link>
+            <Link to="/popular-battle" style={{marginRight : "2%", color : "white", textDecoration : "none", fontSize: "1.9em"}} class="nav-links">Popular Battle</Link>
+            <Link to="/favorites" style={{marginRight : "2%", color : "white", textDecoration : "none", fontSize: "1.9em"}} class="nav-links">Favorites</Link>
             {/* <Link to="/cards">Cards</Link> */}
-          </nav>
+          </nav> 
           <Switch>
               <Route exact path="/" component={Home}/>
               <Route exact path="/weekly" component={Weekly}/>

@@ -19,9 +19,7 @@ export default class Card extends Component {
 
         this.setState({
             poster : "https://www.pngall.com/wp-content/uploads/1/Film-High-Quality-PNG.png" ,
-            title : this.props.title,
-            yearRelease : this.props.yearRelease,
-            description : this.props.description
+
         })
 
     }
@@ -32,15 +30,17 @@ export default class Card extends Component {
                 <ul className='card'
                 style={{border : "1px solid black", 
                             margin : "auto", 
-                            width : "50%", 
+                            width : "40vw", 
                             height : "75%", 
-                            marginTop : "10%"}}>
+                            marginTop : "10%",
+                            
+                            }}>
 
-                    <img src={this.props.poster} alt="poster movie" style={{maxWidth: "50%",}}/>
-                    <li>{this.state.title}</li>
-                    <li>{this.state.yearRelease}</li>
-                    <li>{this.state.description}</li>
-                    
+                    <img src={this.props.poster} alt="poster movie" style={{maxWidth: "40%",}}/>
+                    <li>{this.props.title}</li>
+                    <li>{this.props.yearRelease}</li>
+                    <li>{this.props.description}</li>
+
                 </ul>
             </div>
         )
