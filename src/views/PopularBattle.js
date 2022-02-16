@@ -33,14 +33,9 @@ export default class PopularBattle extends Component {
                         movie1 : this.state.movies[this.state.movies.indexOf(this.state.movie1) + 2],
                         movie2 : this.state.movies[this.state.movies.indexOf(this.state.movie2) + 2]
                     })
+
+                    console.log(`Movies number ${this.state.movies.indexOf(this.state.movie1)} and ${this.state.movies.indexOf(this.state.movie2)}`);
                 }
-
-                // console.log(this.state.movie1);
-
-                // if (e.target === card) {
-                //     console.log("ca marche !");
-
-                // }
 
             } )
         })
