@@ -12,27 +12,12 @@ export default class PopularBattle extends Component {
             movie1 : {},
             movie2 : {},
             currentBattle : 0,
+            favorites : localStorage.getItem("fav"),
             favorites : [],
             displayEnd : false,
         }
-        //Bind functions
-        // this.showNextMovies = this.showNextMovies.bind(this);
+
     }
-
-    // showNextMovies(){
-
-    //     const cards = Array.from(document.querySelectorAll('.card'));
-
-    //     cards.forEach(card => {
-
-    //         card.addEventListener('click', () => {
-    //             console.log("coucou");
-    //         })
-    //     } )
-
-    //     console.log(this.state.movies);
-    // }
-
 
     componentDidMount(){
 
@@ -74,16 +59,19 @@ export default class PopularBattle extends Component {
                             const copyFavorites = this.state.favorites;
                             copyFavorites.push(this.state.movie1.id);
                             this.setState({favorites : copyFavorites})
-                            // console.log(this.state.favorites);
+          
                             // console.log(this.state.movie1);
+                            localStorage.setItem("fav", copyFavorites);
+                            // console.log("test fav",this.state.favorites);
 
                         } else if (titleCard === titleMovie2) {
                             console.log("choix movie 2");
                             const copyFavorites = this.state.favorites;
                             copyFavorites.push(this.state.movie2.id);
-                            this.setState({favorites : copyFavorites})
-                            // console.log(this.state.favorites);
-                            // console.log(this.state.movie2);
+                            // this.setState({favorites : copyFavorites})
+                            localStorage.setItem("fav", copyFavorites);
+                            // console.log("test fav",this.state.favorites);
+                            // console.log(this.state.movie2);    
                         }
 
                         //Getting the next two movies : 
@@ -94,7 +82,8 @@ export default class PopularBattle extends Component {
                             }))
                         
                         this.setState({movie2 : allmovies[this.state.currentBattle + 1 ] })
-                        console.log(" movie 1:", this.state.movies.indexOf(this.state.movie1), "test movie 2: ",  this.state.movies.indexOf(this.state.movie2)); 
+                       
+                        // console.log(" movie 1:", this.state.movies.indexOf(this.state.movie1), "test movie 2: ",  this.state.movies.indexOf(this.state.movie2)); 
 
                     //If the list of movies is finished, display a notification message at the bottom of the page
 
