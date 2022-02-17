@@ -23,15 +23,13 @@ export default class Popular extends Component {
         })
     }
 
-
-
     render() {
         return (
             <div>
                 <h1>Popular : </h1>
 
                 {
-                    
+      
                     this.state.movies.map((movie,i) => {
             
                         if (i < 20) {
