@@ -12,6 +12,7 @@ export default class PopularBattle extends Component {
             movie1 : {},
             movie2 : {},
             currentBattle : 0,
+            displayEnd : false,
         }
         //Bind functions
         // this.showNextMovies = this.showNextMovies.bind(this);
@@ -44,28 +45,41 @@ export default class PopularBattle extends Component {
 
             this.setState({
                 movie1 : allmovies[this.state.currentBattle],
-                movie2 : res.results[this.state.currentBattle + 1],
+                movie2 : allmovies[this.state.currentBattle + 1],
             })
 
             console.log(" movie 1:", this.state.movies.indexOf(this.state.movie1), "test movie 2: ",  this.state.movies.indexOf(this.state.movie2));
-         const cards = Array.from(document.querySelectorAll('.card'));
+            
+            //Selecting my cards and adding an event listener to it : when we click on one of the cards, the next two movies are displayed as a duel
 
-         cards.forEach(card => {
+            const cards = Array.from(document.querySelectorAll('.card'));
 
-             card.addEventListener('click', () => {
-                 
-               this.setState((prevState) => ({
-                   currentBattle : prevState.currentBattle + 2,
-                   movie1 : allmovies[this.state.currentBattle + 2 ],
-                   
-                }))
+            cards.forEach(card => {
+
+                card.addEventListener('click', () => {
+
+                    if (this.state.currentBattle !== 18) {
+                        
+                        this.setState((prevState) => ({
+                            currentBattle : prevState.currentBattle + 2,
+                            movie1 : allmovies[this.state.currentBattle + 2 ], 
+                            }))
+                        
+                        this.setState({movie2 : allmovies[this.state.currentBattle + 1 ] })
+                        console.log(" movie 1:", this.state.movies.indexOf(this.state.movie1), "test movie 2: ",  this.state.movies.indexOf(this.state.movie2));
+
+                    } else {
+
+                        this.setState({displayEnd : true})
+
+                        setTimeout(() => {
+                            this.setState({displayEnd : false})
+                        }, 2500);
+                    }
+                    
                 
-                this.setState({movie2 : allmovies[this.state.currentBattle + 1 ] })
-                console.log("coucou");
-                console.log(" movie 1:", this.state.movies.indexOf(this.state.movie1), "test movie 2: ",  this.state.movies.indexOf(this.state.movie2));
-              
-             })
-         } )
+                })
+            } )
 
 
         })
@@ -82,13 +96,6 @@ export default class PopularBattle extends Component {
                 <h1 style={{textAlign : "center"}}>Popular Battle : </h1>
 
             <div style={{display : "flex", alignItems : "center", justifyContent:"space-around"}}>
-
-                {/* <Card className="card"
-                    title={this.state.movies[this.state.currentBattle].title} 
-                    poster={`https://image.tmdb.org/t/p/w300/${this.state.movies[this.state.currentBattle].poster_path}`}
-                    yearRelease={this.state.movies[this.state.currentBattle].release_date} 
-                    description={this.state.movies[this.state.currentBattle].overview}
-                    /> */}
 
                 <Card className="card"
                     title={this.state.movie1.title} 
@@ -107,16 +114,17 @@ export default class PopularBattle extends Component {
                     description={this.state.movie2.overview}
                     />
 
-                {/* <Card className="card"
-                    title={this.state.movies[this.state.currentBattle + 1].title} 
-                    poster={`https://image.tmdb.org/t/p/w300/${this.state.movies[this.state.currentBattle + 1].poster_path}`}
-                    yearRelease={this.state.movies[this.state.currentBattle + 1].release_date} 
-                    description={this.state.movies[this.state.currentBattle + 1].overview}
-                    /> */}
-
             </div>
 
-            {/* {this.showNextMovies()} */}
+            {
+                        this.state.displayEnd ? 
+
+                        ( 
+                        <p>Finished !</p> )
+                        :
+                        (null)
+                    }
+
             </div>
         )
     }
