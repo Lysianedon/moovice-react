@@ -44,7 +44,7 @@ export default class PopularBattle extends Component {
 
                 card.addEventListener('click', (e) => {
 
-                    if (this.state.currentBattle !== 18) {
+                    if (this.state.currentBattle !== allmovies.length - 2 ) {
 
                         //WHEN THE USER CLICK ON A MOVIE, ITS ID IS ADDED TO HIS FAVORITES : 
 
@@ -82,6 +82,10 @@ export default class PopularBattle extends Component {
                             }))
                         
                         this.setState({movie2 : allmovies[this.state.currentBattle + 1 ] })
+
+                        // if (localStorage.getItem("fav") !== null) {
+                        //     console.log("local storage fonctionne !");
+                        //   }
                        
                         // console.log(" movie 1:", this.state.movies.indexOf(this.state.movie1), "test movie 2: ",  this.state.movies.indexOf(this.state.movie2)); 
 
