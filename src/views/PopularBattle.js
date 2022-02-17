@@ -12,6 +12,7 @@ export default class PopularBattle extends Component {
             movie1 : {},
             movie2 : {},
             currentBattle : 0,
+            favorites : [],
             displayEnd : false,
         }
         //Bind functions
@@ -56,17 +57,46 @@ export default class PopularBattle extends Component {
 
             cards.forEach(card => {
 
-                card.addEventListener('click', () => {
+                card.addEventListener('click', (e) => {
 
                     if (this.state.currentBattle !== 18) {
-                        
+
+                        //WHEN THE USER CLICK ON A MOVIE, ITS ID IS ADDED TO HIS FAVORITES : 
+
+                        //Getting the current card's titles and the current movie's titles from the whole list in order to compare them : if the clicked card's title is the same as the movie's title key, it means that they correspond. And so, we add the movie's id to the favorites array : 
+
+                        let titleMovie1 = this.state.movie1.title;
+                        let titleMovie2 = this.state.movie2.title;
+                        let titleCard = card.firstChild.nextSibling.textContent;
+
+                        if (titleCard === titleMovie1) {
+                            console.log("choix movie 1");
+                            const copyFavorites = this.state.favorites;
+                            copyFavorites.push(this.state.movie1.id);
+                            this.setState({favorites : copyFavorites})
+                            // console.log(this.state.favorites);
+                            // console.log(this.state.movie1);
+
+                        } else if (titleCard === titleMovie2) {
+                            console.log("choix movie 2");
+                            const copyFavorites = this.state.favorites;
+                            copyFavorites.push(this.state.movie2.id);
+                            this.setState({favorites : copyFavorites})
+                            // console.log(this.state.favorites);
+                            // console.log(this.state.movie2);
+                        }
+
+                        //Getting the next two movies : 
                         this.setState((prevState) => ({
                             currentBattle : prevState.currentBattle + 2,
                             movie1 : allmovies[this.state.currentBattle + 2 ], 
+                            
                             }))
                         
                         this.setState({movie2 : allmovies[this.state.currentBattle + 1 ] })
-                        console.log(" movie 1:", this.state.movies.indexOf(this.state.movie1), "test movie 2: ",  this.state.movies.indexOf(this.state.movie2));
+                        console.log(" movie 1:", this.state.movies.indexOf(this.state.movie1), "test movie 2: ",  this.state.movies.indexOf(this.state.movie2)); 
+
+                    //If the list of movies is finished, display a notification message at the bottom of the page
 
                     } else {
 
@@ -102,6 +132,7 @@ export default class PopularBattle extends Component {
                     poster={`https://image.tmdb.org/t/p/w300/${this.state.movie1.poster_path}`}
                     yearRelease={this.state.movie1.release_date} 
                     description={this.state.movie1.overview}
+                    id = {this.state.movie1.id}
                     />
 
                 <h3>VS</h3>
@@ -112,6 +143,7 @@ export default class PopularBattle extends Component {
                     poster={`https://image.tmdb.org/t/p/w300/${this.state.movie2.poster_path}`}
                     yearRelease={this.state.movie2.release_date} 
                     description={this.state.movie2.overview}
+                    id = {this.state.movie2.id}
                     />
 
             </div>
@@ -120,7 +152,7 @@ export default class PopularBattle extends Component {
                         this.state.displayEnd ? 
 
                         ( 
-                        <p>Finished !</p> )
+                        <p>Vous avez parcouru tous les films !</p> )
                         :
                         (null)
                     }
